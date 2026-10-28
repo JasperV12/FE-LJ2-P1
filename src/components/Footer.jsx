@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="app-footer">
       <div className="footer-content">
         <p>&copy; {new Date().getFullYear()} Pokémon Manager</p>
-        <p className="footer-subtext">Verzamel je favoriete Pokémon en stel je teams samen.</p>
+        <p className="footer-subtext">Stel uw favoriete Pokémon samen om u te helpen met werk, we doen sowieso niet aan slavernij van de Pokémon.</p>
       </div>
     </footer>
   );
