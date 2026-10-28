@@ -1,8 +1,8 @@
 export default function Header() {
   return (
     <header className="app-header">
-      <h1>PokéCorp HR & Team Management</h1>
-      <p>Zakelijk Pokemon team- en resourcebeheer</p>
+      <h1>Pokémon Manager</h1>
+      <p>Beheer je Pokémon en teams</p>
     </header>
   );
 }

@@ -51,7 +51,7 @@ export default function PokemonDetail({
       <div className="page detail-page">
         <div className="loading-state">
           <div className="spinner"></div>
-          <p>Dossier van werknemer openen...</p>
+          <p>Pokémongegevens laden...</p>
         </div>
       </div>
     );
@@ -107,7 +107,7 @@ export default function PokemonDetail({
     <div className="page detail-page">
       <div className="breadcrumb">
         <Link to={teamMember ? '/teams' : '/pokemon'} className="breadcrumb-back">
-          &larr; Terug naar {teamMember ? 'teams' : 'personeelslijst'}
+          &larr; Terug naar {teamMember ? 'teams' : 'Pokémon'}
         </Link>
         <span className="breadcrumb-separator">/</span>
         <span className="breadcrumb-current">
@@ -122,7 +122,7 @@ export default function PokemonDetail({
           </div>
 
           <div className="detail-info-card">
-            <h3>Personeelsgegevens</h3>
+            <h3>Pokémongegevens</h3>
             <table className="info-table">
               <tbody>
                 <tr>
@@ -189,7 +189,7 @@ export default function PokemonDetail({
 
             {teams.length > 0 && (
               <form onSubmit={handleAssignToTeam} className="detail-team-form">
-                <label htmlFor="team-select">Plaats in afdeling / team:</label>
+                <label htmlFor="team-select">Voeg toe aan team:</label>
                 <div className="form-row">
                   <select
                     id="team-select"

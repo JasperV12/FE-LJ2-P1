@@ -14,7 +14,7 @@ export default function Navigation() {
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
             </svg>
           </span>
-          <span className="logo-text">PokéCorp HR</span>
+          <span className="logo-text">Pokémon Manager</span>
         </Link>
 
         <button 

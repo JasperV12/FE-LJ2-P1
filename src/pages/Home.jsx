@@ -5,12 +5,12 @@ export default function Home({ teams, favorites, totalPokemonCount }) {
   return (
     <div className="page home-page">
       <section className="stats-section">
-        <h2 className="section-title">Bedrijfsoverzicht</h2>
+        <h2 className="section-title">Overzicht</h2>
         <div className="stats-grid">
           <div className="stat-card">
             <span className="stat-label">Aantal Teams</span>
             <span className="stat-value">{teams.length}</span>
-            <span className="stat-sub">Actieve afdelingen</span>
+            <span className="stat-sub">Actieve teams</span>
           </div>
 
           <div className="stat-card">
@@ -39,7 +39,7 @@ export default function Home({ teams, favorites, totalPokemonCount }) {
             </div>
             <div className="quick-card-text">
               <h3>Blader door Pokémon</h3>
-              <p>Zoek, filter en bekijk details van alle beschikbare werknemers.</p>
+              <p>Zoek, filter en bekijk details van alle Pokémon.</p>
             </div>
             <span className="quick-card-arrow">&rarr;</span>
           </Link>
@@ -54,8 +54,8 @@ export default function Home({ teams, favorites, totalPokemonCount }) {
               </svg>
             </div>
             <div className="quick-card-text">
-              <h3>Beheer Kantoorteams</h3>
-              <p>Maak nieuwe afdelingen aan of wijzig bestaande teamsamenstellingen.</p>
+              <h3>Beheer teams</h3>
+              <p>Maak nieuwe teams aan of pas bestaande teams aan.</p>
             </div>
             <span className="quick-card-arrow">&rarr;</span>
           </Link>

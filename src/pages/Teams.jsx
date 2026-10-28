@@ -15,7 +15,7 @@ export default function Teams({
     e.preventDefault();
     const trimmed = newTeamName.trim();
     if (!trimmed) {
-      setErrorMessage('Vul a.u.b. een afdelings- of teamnaam in.');
+      setErrorMessage('Vul a.u.b. een teamnaam in.');
       return;
     }
 
@@ -27,16 +27,16 @@ export default function Teams({
   return (
     <div className="page teams-page">
       <div className="page-header">
-        <h1>Afdelingen & Teams</h1>
-        <p>Organiseer uw personeel in doelgerichte teams van maximaal 6 Pokémon per afdeling.</p>
+        <h1>Teams</h1>
+        <p>Maak teams van maximaal 6 Pokémon.</p>
       </div>
 
       <div className="create-team-card">
-        <h2>Nieuwe Afdeling Oprichten</h2>
+        <h2>Nieuw team maken</h2>
         <form onSubmit={handleSubmit} className="create-team-form">
           <input 
             type="text" 
-            placeholder="Bijv. Marketing, HR, Debiteurenbeheer..." 
+            placeholder="Bijv. Fire Squad, Gym Team, Adventure Team..."
             value={newTeamName}
             onChange={(e) => {
               setNewTeamName(e.target.value);
@@ -52,12 +52,12 @@ export default function Teams({
       </div>
 
       <div className="teams-list-section">
-        <h2>Bestaande Afdelingen ({teams.length})</h2>
+        <h2>Mijn teams ({teams.length})</h2>
 
         {teams.length === 0 ? (
           <div className="empty-state">
-            <p>Er zijn op dit moment geen actieve kantoorteams.</p>
-            <p>Gebruik het formulier hierboven om uw eerste team samen te stellen.</p>
+            <p>Je hebt nog geen teams gemaakt.</p>
+            <p>Gebruik het formulier hierboven om je eerste team samen te stellen.</p>
           </div>
         ) : (
           <div className="teams-vertical-list">
@@ -72,7 +72,7 @@ export default function Teams({
                 {team.members.length < 6 && (
                   <div className="team-add-prompt">
                     <Link to="/pokemon" className="link-inline">
-                      + Voeg personeelslid toe vanuit de catalogus ({6 - team.members.length} plekken over)
+                      + Voeg Pokémon toe vanuit de catalogus ({6 - team.members.length} plekken over)
                     </Link>
                   </div>
                 )}
@@ -84,4 +84,3 @@ export default function Teams({
     </div>
   );
 }
-

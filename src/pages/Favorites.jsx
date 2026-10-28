@@ -11,13 +11,13 @@ export default function Favorites({
     <div className="page favorites-page">
       <div className="page-header">
         <h1>Favoriete Pokémon</h1>
-        <p>Overzicht van geselecteerde favorieten voor snelle plaatsing in kantoorteams.</p>
+        <p>Je favoriete Pokémon op één plek.</p>
       </div>
 
       {favorites.length === 0 ? (
         <div className="empty-state">
-          <p>U heeft nog geen favoriete Pokémon werknemers gemarkeerd.</p>
-          <p>Ga naar de Pokémon catalogus en klik op het hartje bij een kandidaat.</p>
+          <p>Je hebt nog geen favoriete Pokémon.</p>
+          <p>Ga naar de Pokémonlijst en klik op het hartje om er een toe te voegen.</p>
           <Link to="/pokemon" className="btn btn-primary">
             Bekijk Pokémon Catalogus
           </Link>
@@ -42,4 +42,3 @@ export default function Favorites({
     </div>
   );
 }
-

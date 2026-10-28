@@ -56,8 +56,8 @@ export default function PokemonList({
   return (
     <div className="page pokemon-list-page">
       <div className="page-header">
-        <h1>Pokémon Personeelslijst</h1>
-        <p>Vind de juiste kandidaten voor uw afdeling op basis van vaardigheden en type.</p>
+        <h1>Pokémon</h1>
+        <p>Ontdek Pokémon en filter op naam, nummer of type.</p>
       </div>
 
       <div className="filter-bar">
@@ -170,4 +170,3 @@ export default function PokemonList({
     </div>
   );
 }
-
