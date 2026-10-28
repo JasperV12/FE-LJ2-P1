@@ -498,6 +498,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   background-color: var(--primary-color);
   color: #ffffff;
   border: none;
@@ -510,6 +511,11 @@
 .btn-add:disabled {
   background-color: #cbd5e1;
   cursor: not-allowed;
+}
+
+.btn-add-icon {
+  display: block;
+  transform: translateY(-1px);
 }
 
 .list-sidebar {
@@ -728,6 +734,9 @@
 }
 
 .empty-slot-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.2rem;
   line-height: 1;
 }
@@ -1013,9 +1022,11 @@
 }
 
 .link-inline {
+  display: block;
   color: var(--primary-color);
   font-weight: 600;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .link-inline:hover {

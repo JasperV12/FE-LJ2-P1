@@ -84,7 +84,7 @@ export default function PokemonCard({
             ))}
           </select>
           <button type="submit" disabled={!selectedTeamId} className="btn-add">
-            +
+            <span className="btn-add-icon">+</span>
           </button>
         </form>
       )}
