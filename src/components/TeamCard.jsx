@@ -42,7 +42,7 @@ export default function TeamCard({
                     onClick={() => onRemoveMember(team.id, member.id)}
                     title="Verwijder uit team"
                   >
-                    &times;
+                    <span aria-hidden="true">&times;</span>
                   </button>
                 )}
               </div>
@@ -58,4 +58,3 @@ export default function TeamCard({
     </div>
   );
 }
-
