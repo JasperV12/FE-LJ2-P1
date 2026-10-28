@@ -131,6 +131,23 @@ export default function App() {
     );
   }
 
+  function handleRenameMember(teamId, pokemonId, nickname) {
+    setTeams(
+      teams.map((team) => {
+        if (team.id !== teamId) return team;
+
+        return {
+          ...team,
+          members: team.members.map((member) => (
+            member.id === pokemonId
+              ? { ...member, nickname }
+              : member
+          ))
+        };
+      })
+    );
+  }
+
   function handleToggleFavorite(pokemon) {
     const exists = favorites.some((f) => f.id === pokemon.id);
     if (exists) {
@@ -178,6 +195,7 @@ export default function App() {
                 onToggleFavorite={handleToggleFavorite}
                 teams={teams}
                 onAddToTeam={handleAddToTeam}
+                onRenameMember={handleRenameMember}
               />
             } 
           />
@@ -189,6 +207,19 @@ export default function App() {
                 onToggleFavorite={handleToggleFavorite}
                 teams={teams}
                 onAddToTeam={handleAddToTeam}
+                onRenameMember={handleRenameMember}
+              />
+            } 
+          />
+          <Route 
+            path="/teams/:teamId/pokemon/:memberId" 
+            element={
+              <PokemonDetail 
+                favorites={favorites}
+                onToggleFavorite={handleToggleFavorite}
+                teams={teams}
+                onAddToTeam={handleAddToTeam}
+                onRenameMember={handleRenameMember}
               />
             } 
           />

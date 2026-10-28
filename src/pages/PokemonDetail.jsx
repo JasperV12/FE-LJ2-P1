@@ -5,21 +5,32 @@ export default function PokemonDetail({
   favorites = [], 
   onToggleFavorite, 
   teams = [], 
-  onAddToTeam 
+  onAddToTeam,
+  onRenameMember
 }) {
-  const { name } = useParams();
+  const { name, teamId, memberId } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedTeamId, setSelectedTeamId] = useState('');
   const [statusMessage, setStatusMessage] = useState('');
+  const [nicknameStatusMessage, setNicknameStatusMessage] = useState('');
+  const teamMember = teamId && memberId
+    ? teams.find((team) => String(team.id) === teamId)?.members.find(
+      (member) => String(member.id) === memberId
+    )
+    : null;
+  const pokemonName = teamMember?.name || name;
 
   useEffect(() => {
     async function fetchPokemonDetail() {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`);
+        if (!pokemonName) {
+          throw new Error('Teamlid niet gevonden');
+        }
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
         if (!res.ok) {
           throw new Error('Pokémon niet gevonden');
         }
@@ -33,7 +44,7 @@ export default function PokemonDetail({
     }
 
     fetchPokemonDetail();
-  }, [name]);
+  }, [pokemonName]);
 
   if (loading) {
     return (
@@ -66,6 +77,14 @@ export default function PokemonDetail({
 
   const totalStats = pokemon.stats.reduce((acc, curr) => acc + curr.base_stat, 0);
 
+  function handleRename(e) {
+    e.preventDefault();
+    const nickname = new FormData(e.currentTarget).get('nickname').trim();
+    onRenameMember(Number(teamId), Number(memberId), nickname);
+    setNicknameStatusMessage(nickname ? 'Bijnaam opgeslagen.' : 'Bijnaam verwijderd.');
+    setTimeout(() => setNicknameStatusMessage(''), 3000);
+  }
+
   function handleAssignToTeam(e) {
     e.preventDefault();
     if (!selectedTeamId) return;
@@ -87,9 +106,13 @@ export default function PokemonDetail({
   return (
     <div className="page detail-page">
       <div className="breadcrumb">
-        <Link to="/pokemon" className="breadcrumb-back">&larr; Terug naar personeelslijst</Link>
+        <Link to={teamMember ? '/teams' : '/pokemon'} className="breadcrumb-back">
+          &larr; Terug naar {teamMember ? 'teams' : 'personeelslijst'}
+        </Link>
         <span className="breadcrumb-separator">/</span>
-        <span className="breadcrumb-current">{formattedId} {pokemon.name}</span>
+        <span className="breadcrumb-current">
+          {formattedId} {teamMember?.nickname || pokemon.name}
+        </span>
       </div>
 
       <div className="detail-layout">
@@ -104,7 +127,10 @@ export default function PokemonDetail({
               <tbody>
                 <tr>
                   <td>Naam</td>
-                  <td className="capitalize">{pokemon.name}</td>
+                  <td className="capitalize">
+                    {teamMember?.nickname || pokemon.name}
+                    {teamMember?.nickname && <span className="detail-species"> ({pokemon.name})</span>}
+                  </td>
                 </tr>
                 <tr>
                   <td>Nummer</td>
@@ -185,6 +211,25 @@ export default function PokemonDetail({
                 {statusMessage && (
                   <p className="status-feedback">{statusMessage}</p>
                 )}
+              </form>
+            )}
+
+            {teamMember && (
+              <form onSubmit={handleRename} className="nickname-form">
+                <label htmlFor="pokemon-nickname">Bijnaam voor dit teamlid:</label>
+                <div className="form-row">
+                  <input
+                    id="pokemon-nickname"
+                    name="nickname"
+                    type="text"
+                    maxLength="24"
+                    defaultValue={teamMember.nickname || ''}
+                    placeholder={`Bijv. ${pokemon.name}`}
+                    className="input-field"
+                  />
+                  <button type="submit" className="btn btn-primary">Opslaan</button>
+                </div>
+                {nicknameStatusMessage && <p className="status-feedback">{nicknameStatusMessage}</p>}
               </form>
             )}
           </div>

@@ -31,9 +31,10 @@ export default function TeamCard({
           <div key={index} className={`team-member-slot ${member ? 'filled' : 'empty'}`}>
             {member ? (
               <div className="member-info">
-                <Link to={`/pokemon/${member.name}`} className="member-link">
+                <Link to={`/teams/${team.id}/pokemon/${member.id}`} className="member-link">
                   <img src={member.image} alt={member.name} className="member-sprite" />
-                  <span className="member-name">{member.name}</span>
+                  <span className="member-name">{member.nickname || member.name}</span>
+                  {member.nickname && <span className="member-species">{member.name}</span>}
                 </Link>
                 {!readOnly && onRemoveMember && (
                   <button
